@@ -39,10 +39,51 @@ A modern, interactive web application for visualizing and analyzing social netwo
 - **Data Processing**: Python with pandas and openpyxl
 - **Icons**: Font Awesome 6
 
+## Live Demo
+
+### Access the Application Online
+
+The application can be accessed via GitHub Pages at:
+```
+https://ashourviz.github.io/SocialNetowrkAnalysis/
+```
+
+### Setting Up GitHub Pages (First Time)
+
+If this is your first time deploying, follow these steps:
+
+1. **Go to your GitHub repository** in a web browser:
+   - Navigate to `https://github.com/Ashourviz/SocialNetowrkAnalysis`
+
+2. **Enable GitHub Pages**:
+   - Click on **Settings** tab
+   - Scroll down to **Pages** in the left sidebar
+   - Under **Build and deployment**:
+     - Source: Select **GitHub Actions**
+   - Click **Save**
+
+3. **Merge your branch to main**:
+   - Create a pull request from `claude/social-network-analysis-ui-011CUjQdaeMR2duAWBDsWcL8` to `main`
+   - Merge the pull request
+   - The GitHub Actions workflow will automatically deploy your site
+
+4. **Wait for deployment**:
+   - Go to the **Actions** tab to see the deployment progress
+   - Once complete (green checkmark), your site will be live!
+
+5. **Access your application**:
+   - Visit `https://ashourviz.github.io/SocialNetowrkAnalysis/`
+   - Bookmark it for easy access
+
+The deployment process is automated - whenever you push to the main branch, GitHub Pages will automatically update!
+
 ## Files Structure
 
 ```
 SocialNetowrkAnalysis/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml       # GitHub Pages deployment workflow
 ├── index.html              # Main HTML structure
 ├── style.css               # Modern CSS styling
 ├── app.js                  # JavaScript application logic
@@ -52,7 +93,7 @@ SocialNetowrkAnalysis/
 └── README.md               # This file
 ```
 
-## Getting Started
+## Getting Started Locally
 
 ### Prerequisites
 
