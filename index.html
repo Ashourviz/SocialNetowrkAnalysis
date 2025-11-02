@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Network Analysis - Interactive Visualization</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">
+                    <i class="fas fa-project-diagram"></i>
+                    Social Network Analysis
+                </h1>
+                <div class="header-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-users"></i>
+                        <span id="total-nodes">0</span>
+                        <small>Nodes</small>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-link"></i>
+                        <span id="total-edges">0</span>
+                        <small>Connections</small>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-filter"></i> Filters</h3>
+
+                    <!-- Platform Filter -->
+                    <div class="filter-group">
+                        <label>Platform</label>
+                        <select id="platform-filter" class="filter-select">
+                            <option value="all">All Platforms</option>
+                        </select>
+                    </div>
+
+                    <!-- Sentiment Filter -->
+                    <div class="filter-group">
+                        <label>Sentiment</label>
+                        <select id="sentiment-filter" class="filter-select">
+                            <option value="all">All Sentiments</option>
+                            <option value="positive">Positive</option>
+                            <option value="negative">Negative</option>
+                            <option value="neutral">Neutral</option>
+                        </select>
+                    </div>
+
+                    <!-- Search -->
+                    <div class="filter-group">
+                        <label>Search Node</label>
+                        <input type="text" id="search-node" class="filter-input" placeholder="Enter node name...">
+                    </div>
+
+                    <!-- Min Connections -->
+                    <div class="filter-group">
+                        <label>Min Connections: <span id="min-connections-value">1</span></label>
+                        <input type="range" id="min-connections" min="1" max="100" value="1" class="filter-range">
+                    </div>
+
+                    <button id="reset-filters" class="btn btn-secondary">
+                        <i class="fas fa-redo"></i> Reset Filters
+                    </button>
+                </div>
+
+                <!-- Statistics -->
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-chart-bar"></i> Statistics</h3>
+
+                    <div class="stat-card">
+                        <div class="stat-label">Sentiment Distribution</div>
+                        <div class="sentiment-bars">
+                            <div class="sentiment-bar">
+                                <div class="sentiment-label">
+                                    <i class="fas fa-smile positive"></i> Positive
+                                </div>
+                                <div class="bar-container">
+                                    <div class="bar positive" id="positive-bar"></div>
+                                    <span class="bar-value" id="positive-value">0</span>
+                                </div>
+                            </div>
+                            <div class="sentiment-bar">
+                                <div class="sentiment-label">
+                                    <i class="fas fa-frown negative"></i> Negative
+                                </div>
+                                <div class="bar-container">
+                                    <div class="bar negative" id="negative-bar"></div>
+                                    <span class="bar-value" id="negative-value">0</span>
+                                </div>
+                            </div>
+                            <div class="sentiment-bar">
+                                <div class="sentiment-label">
+                                    <i class="fas fa-meh neutral"></i> Neutral
+                                </div>
+                                <div class="bar-container">
+                                    <div class="bar neutral" id="neutral-bar"></div>
+                                    <span class="bar-value" id="neutral-value">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-label">Top Platforms</div>
+                        <div id="platform-list" class="platform-list"></div>
+                    </div>
+                </div>
+
+                <!-- Selected Node Info -->
+                <div class="sidebar-section" id="node-info-section" style="display: none;">
+                    <h3><i class="fas fa-info-circle"></i> Node Details</h3>
+                    <div id="node-info" class="node-info"></div>
+                </div>
+            </aside>
+
+            <!-- Network Visualization -->
+            <main class="visualization-container">
+                <div class="controls">
+                    <button id="zoom-in" class="control-btn" title="Zoom In">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                    <button id="zoom-out" class="control-btn" title="Zoom Out">
+                        <i class="fas fa-search-minus"></i>
+                    </button>
+                    <button id="fit-network" class="control-btn" title="Fit Network">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                    <button id="toggle-physics" class="control-btn active" title="Toggle Physics">
+                        <i class="fas fa-magnet"></i>
+                    </button>
+                </div>
+                <div id="network" class="network"></div>
+                <div id="loading" class="loading">
+                    <div class="loader"></div>
+                    <p>Loading network data...</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
